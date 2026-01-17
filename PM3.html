@@ -481,14 +481,16 @@
             window.scrollTo(0, 0);
         }
 
-        // 修改後的下載/查看履歷邏輯
-        function downloadResume() {
+                function downloadResume() {
             const toast = document.getElementById("toast");
             toast.className = "show";
             
-            // 稍作延遲後導向網址
+            // 稍作延遲後，直接在原視窗導向網址
             setTimeout(() => {
-                window.open('https://cindy880518.github.io/PM/2026CV.pdf', '_blank');
+                // 將原本的 window.open 改成 window.location.href
+                window.location.href = 'https://cindy880518.github.io/PM/2026CV.pdf';
+                
+                // 註：因為頁面即將跳轉，底下的 toast.className 清除動作通常看不到了
                 toast.className = "";
             }, 1000);
         }
