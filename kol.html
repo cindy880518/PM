@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JetFi KOL 影響者媒合與成效優化</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #0a0c10;
+            color: #e2e8f0;
+        }
+        .blue-glow {
+            box-shadow: 0 0 20px rgba(59, 130, 246, 0.2);
+        }
+        .text-gradient {
+            background: linear-gradient(to right, #60a5fa, #818cf8);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .back-btn {
+            position: fixed;
+            top: 2rem;
+            right: 2rem;
+            z-index: 100;
+            width: 54px;
+            height: 54px;
+            background: rgba(30, 41, 59, 0.7);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #ffffff;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            cursor: pointer;
+            box-shadow: 0 10px 30px -5px rgba(0, 0, 0, 0.5);
+        }
+
+        .back-btn:hover {
+            background: rgba(239, 68, 68, 0.2);
+            border-color: rgba(239, 68, 68, 0.5);
+            transform: scale(1.1) rotate(180deg);
+        }
+    </style>
+</head>
+<body class="antialiased font-sans">
+     <!-- Back to Home Button (Circular X) -->
+    <a href="PM4.html" class="back-btn" title="返回首頁">
+        <i class="fas fa-times"></i>
+    </a>
+    <!-- 右上角關閉按鈕 -->
+    <!-- <div class="fixed top-6 right-6 z-[100]">
+        <button onclick="window.parent.postMessage('close', '*'); document.body.style.display='none';" class="w-10 h-10 bg-white/10 hover:bg-red-500/80 backdrop-blur-md border border-white/20 rounded-full flex items-center justify-center text-white transition-all duration-300 group shadow-lg">
+            <i class="fas fa-times group-hover:rotate-90 transition-transform"></i>
+        </button>
+    </div> -->
+
+    <!-- Hero Section -->
+    <section class="relative py-24 px-6 overflow-hidden">
+        <div class="max-w-6xl mx-auto relative z-10">
+            <div class="inline-block px-4 py-1.5 rounded-full bg-blue-500/10 border border-blue-500/20 text-blue-400 text-xs font-bold tracking-widest uppercase mb-6">
+                Project Management Case Study
+            </div>
+            <h1 class="text-5xl md:text-7xl font-extrabold text-white mb-8 leading-[1.1]">
+                跨境電信行銷：<br>
+                <span class="text-gradient">KOL 影響者媒合與成效優化</span>
+            </h1>
+            <p class="text-slate-400 text-xl max-w-3xl leading-relaxed">
+                主導 JetFi Mobile 年度 KOL 合作計畫。透過建立標準化 SOP 流程，精準對接 10+ 位頂尖 Youtuber，並結合數據分析模型優化投放策略，達成 App 下載爆發性成長與卓越的 ROAS 表現。
+            </p>
+
+            <!-- Quick Stats -->
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-6 mt-16">
+                <div class="bg-white/5 border border-white/10 p-6 rounded-3xl blue-glow">
+                    <div class="text-blue-400 mb-2"><i class="fas fa-chart-line fa-lg"></i></div>
+                    <div class="text-3xl font-bold text-white mb-1">3.4</div>
+                    <div class="text-slate-500 text-sm font-medium uppercase tracking-tighter">最高單波 ROAS</div>
+                </div>
+                <div class="bg-white/5 border border-white/10 p-6 rounded-3xl">
+                    <div class="text-cyan-400 mb-2"><i class="fas fa-download fa-lg"></i></div>
+                    <div class="text-3xl font-bold text-white mb-1">585%</div>
+                    <div class="text-slate-500 text-sm font-medium uppercase tracking-tighter">App 下載提升率</div>
+                </div>
+                <div class="bg-white/5 border border-white/10 p-6 rounded-3xl">
+                    <div class="text-indigo-400 mb-2"><i class="fas fa-users fa-lg"></i></div>
+                    <div class="text-3xl font-bold text-white mb-1">8M+</div>
+                    <div class="text-slate-500 text-sm font-medium uppercase tracking-tighter">專案總曝光量</div>
+                </div>
+                <div class="bg-white/5 border border-white/10 p-6 rounded-3xl">
+                    <div class="text-blue-500 mb-2"><i class="fas fa-hand-holding-usd fa-lg"></i></div>
+                    <div class="text-3xl font-bold text-white mb-1">162</div>
+                    <div class="text-slate-500 text-sm font-medium uppercase tracking-tighter">最低 CPM (TWD)</div>
+                </div>
+            </div>
+        </div>
+        <!-- Background Decor -->
+        <div class="absolute top-0 right-0 w-[500px] h-[500px] bg-blue-600/10 rounded-full blur-[120px] -mr-64 -mt-64"></div>
+    </section>
+
+    <!-- Strategy Section -->
+    <section class="py-20 bg-white/[0.02]">
+        <div class="max-w-6xl mx-auto px-6">
+            <div class="flex flex-col md:flex-row gap-16 items-center">
+                <div class="md:w-1/2">
+                    <h2 class="text-3xl font-bold text-white mb-6 flex items-center gap-4">
+                        <span class="w-10 h-10 rounded-xl bg-blue-600 flex items-center justify-center text-sm">01</span>
+                        標準化執行 SOP
+                    </h2>
+                    <p class="text-slate-400 mb-8 leading-relaxed text-lg">
+                        為確保跨部門協作效率與內容品質，我制定了從前置篩選到結案評估的完整循環。這套流程不僅縮短了 30% 的內部溝通成本，更確保了產品特點能在不同 KOL 的頻道中精準呈現。
+                    </p>
+                    <ul class="space-y-4">
+                        <li class="flex gap-4 p-4 rounded-2xl bg-white/5 border border-white/5 hover:border-blue-500/30 transition-all">
+                            <i class="fas fa-check-circle text-blue-500 mt-1"></i>
+                            <div>
+                                <h4 class="font-bold text-slate-200">數據化篩選機制</h4>
+                                <p class="text-sm text-slate-500">依據粉絲重合度與歷史轉化數據，而非僅靠知名度。</p>
+                            </div>
+                        </li>
+                        <li class="flex gap-4 p-4 rounded-2xl bg-white/5 border border-white/5 hover:border-blue-500/30 transition-all">
+                            <i class="fas fa-check-circle text-blue-500 mt-1"></i>
+                            <div>
+                                <h4 class="font-bold text-slate-200">內容二次校稿機制</h4>
+                                <p class="text-sm text-slate-500">確保 A-copy / B-copy 的轉化指令碼（CTA）精確無誤。</p>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+                <div class="md:w-4/5">
+                    <div class="rounded-3xl overflow-hidden border border-white/10 shadow-2xl">
+                        <img src="img/kol流程表.png" alt="[KOL 合作流程 SOP 表]" class="w-full h-auto opacity-90 hover:opacity-100 transition-opacity">
+                    </div>
+                    <p class="text-center text-slate-500 text-xs mt-4 italic">圖一：專案主導之 KOL 合作標準作業程序 (SOP)</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Data Visualization Section -->
+    <section class="py-24">
+        <div class="max-w-6xl mx-auto px-6">
+            <h2 class="text-3xl font-bold text-white mb-12 text-center">數據洞察與效益分析</h2>
+            
+            <div class="grid md:grid-cols-2 gap-10">
+                <!-- Data Image 1 -->
+                <div class="space-y-4">
+                    <div class="rounded-2xl overflow-hidden border border-white/10 bg-white/5 p-4">
+                        <img src="IMG/Youtuber置入廣告效益分析_頁面_2.jpg" alt="[KOL 成效總結數據]" class="rounded-xl w-full h-auto">
+                    </div>
+                    <div class="px-2">
+                        <h4 class="text-blue-400 font-bold mb-2">多元分眾投放策略</h4>
+                        <p class="text-sm text-slate-400">透過將 Youtuber 分類（如：生活實測、旅遊冒險、開箱），我們發現「旅遊場景」的置入對於 JetFi 產品具備最高的轉換相關性。</p>
+                    </div>
+                </div>
+
+                <!-- Data Image 2 -->
+                <div class="space-y-4">
+                    <div class="rounded-2xl overflow-hidden border border-white/10 bg-white/5 p-4">
+                        <img src="IMG/Youtuber置入廣告效益分析_頁面_3.jpg" alt="[KOL 下載提升分析]" class="rounded-xl w-full h-auto">
+                    </div>
+                    <div class="px-2">
+                        <h4 class="text-blue-400 font-bold mb-2">App 下載轉化分析</h4>
+                        <p class="text-sm text-slate-400">數據顯示，頂尖網紅 (DoDoMen) 能帶動高達 585% 的 App 下載爆發，而中型網紅則能提供更穩定的 ROAS 表現。</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Full Width Insight -->
+            <div class="mt-16 bg-white/5 border border-white/10 rounded-3xl p-8 md:p-12">
+                <div class="flex flex-col md:flex-row gap-12 items-center">
+                    <div class="md:w-3/5 order-2 md:order-1">
+                        <img src="IMG/Youtuber置入廣告效益分析_頁面_4.jpg" alt="[KOL 獲客成本與排名分析]" class="rounded-2xl border border-white/5 shadow-lg w-full">
+                    </div>
+                    <div class="md:w-2/5 order-1 md:order-2">
+                        <h3 class="text-2xl font-bold text-white mb-4">預算分配優化洞察</h3>
+                        <p class="text-slate-400 text-sm leading-relaxed mb-6">
+                            作為 PM，我不僅關注總額。透過對 CPM 與 RPM 的深入挖掘，我們成功識別出如「酷的夢」具備極低獲客成本 ($162 CPM)，以及「GM 冠名」具備極高回報率 (3.4 ROAS) 的特性，進而優化了年度預算配置比。
+                        </p>
+                        <div class="space-y-3">
+                            <div class="flex justify-between items-center text-xs p-3 bg-white/5 rounded-lg border-l-4 border-blue-500">
+                                <span class="text-slate-300">年度總結營收</span>
+                                <span class="text-white font-bold">NT$ 12,000,000+</span>
+                            </div>
+                            <div class="flex justify-between items-center text-xs p-3 bg-white/5 rounded-lg border-l-4 border-cyan-500">
+                                <span class="text-slate-300">平均專案 ROAS</span>
+                                <span class="text-white font-bold">1.82</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PM Value Section -->
+    <section class="py-24 bg-blue-600">
+        <div class="max-w-4xl mx-auto px-6 text-center">
+            <h2 class="text-4xl font-extrabold text-white mb-8">核心價值總結</h2>
+            <div class="grid md:grid-cols-3 gap-10">
+                <div class="space-y-4">
+                    <div class="text-blue-200 text-2xl"><i class="fas fa-layer-group"></i></div>
+                    <h4 class="font-bold text-white">體系化管理</h4>
+                    <p class="text-blue-100/70 text-sm">將零散的網紅合作轉化為可量化、可追蹤、可優化的企業行銷資產。</p>
+                </div>
+                <div class="space-y-4">
+                    <div class="text-blue-200 text-2xl"><i class="fas fa-microchip"></i></div>
+                    <h4 class="font-bold text-white">數據敏銳度</h4>
+                    <p class="text-blue-100/70 text-sm">從複雜的觀看數、轉換率中提取關鍵洞察，指導後續預算投向。</p>
+                </div>
+                <div class="space-y-4">
+                    <div class="text-blue-200 text-2xl"><i class="fas fa-bullseye"></i></div>
+                    <h4 class="font-bold text-white">商業目標對齊</h4>
+                    <p class="text-blue-100/70 text-sm">始終以品牌曝光與轉化業績為核心，達成流量與收益的雙贏。</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-12 border-t border-white/5">
+        <div class="max-w-6xl mx-auto px-6 text-center">
+            <div class="text-slate-500 text-xs mb-4">JetFi Mobile - Influencer Marketing Project Management Case Study</div>
+            <div class="text-slate-600 text-[10px] tracking-widest uppercase">© 2026 Portfolio. All rights reserved.</div>
+        </div>
+    </footer>
+
+</body>
+</html>
