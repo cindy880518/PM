@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>YI XIN | Product Manager Portfolio</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;800&family=Noto+Sans+TC:wght@300;400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #080c14;
+            --surface: rgba(255,255,255,0.08);
+            --surface-strong: rgba(255,255,255,0.12);
+            --border: rgba(255,255,255,0.16);
+            --text: #e2e8f0;
+            --muted: #94a3b8;
+            --accent: #38bdf8;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            min-height: 100vh;
+            font-family: 'Plus Jakarta Sans', 'Noto Sans TC', sans-serif;
+            background: radial-gradient(circle at top, rgba(56, 189, 248, 0.08), transparent 28%),
+                        linear-gradient(180deg, #090c14 0%, #070a12 100%);
+            color: var(--text);
+            overflow-x: hidden;
+        }
+
+        .container {
+            width: min(1120px, 100% - 2rem);
+            margin: 0 auto;
+        }
+
+        .glass-card {
+            background: rgba(255,255,255,0.08);
+            border: 1px solid var(--border);
+            backdrop-filter: blur(24px);
+            -webkit-backdrop-filter: blur(24px);
+            border-radius: 28px;
+            transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .glass-card:hover {
+            transform: translateY(-6px);
+            border-color: rgba(56, 189, 248, 0.3);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.25);
+        }
+
+        .hero {
+            min-height: 90vh;
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 2rem;
+            align-items: center;
+            padding: 6rem 0 4rem;
+        }
+
+        .hero-content {
+            max-width: 560px;
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            gap: 0.75rem;
+            align-items: center;
+            padding: 0.9rem 1.1rem;
+            border-radius: 999px;
+            background: rgba(56, 189, 248, 0.12);
+            color: var(--accent);
+            font-size: 0.82rem;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+            margin-bottom: 1.75rem;
+        }
+
+        .hero-title {
+            font-size: clamp(3rem, 5vw, 5.2rem);
+            line-height: 0.95;
+            letter-spacing: -0.05em;
+            margin: 0;
+        }
+
+        .hero-title .highlight {
+            background: linear-gradient(90deg, #38bdf8, #8b5cf6);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .hero-copy {
+            color: var(--muted);
+            font-size: 1.05rem;
+            line-height: 1.9;
+            margin: 1.6rem 0 2.4rem;
+        }
+
+        .hero-actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .btn-primary,
+        .btn-secondary {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 1.1rem 1.6rem;
+            border-radius: 18px;
+            font-weight: 700;
+            text-decoration: none;
+            transition: transform 0.25s ease, box-shadow 0.25s ease, background 0.25s ease;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #38bdf8, #818cf8);
+            color: #070a12;
+            box-shadow: 0 18px 40px rgba(56, 189, 248, 0.2);
+        }
+
+        .btn-secondary {
+            border: 1px solid rgba(255,255,255,0.16);
+            color: var(--text);
+            background: rgba(255,255,255,0.04);
+        }
+
+        .btn-primary:hover,
+        .btn-secondary:hover {
+            transform: translateY(-2px);
+        }
+
+        .hero-image {
+            position: relative;
+            min-height: 520px;
+            border-radius: 36px;
+            overflow: hidden;
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .hero-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            transition: transform 0.5s ease;
+        }
+
+        .hero-image:hover img {
+            transform: scale(1.03);
+        }
+
+        .hero-image::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(180deg, rgba(9,12,20,0.12), rgba(9,12,20,0.65));
+        }
+
+        .hero-image .hero-card {
+            position: absolute;
+            bottom: 2rem;
+            left: 2rem;
+            right: 2rem;
+            padding: 1.6rem;
+            background: rgba(7, 10, 18, 0.78);
+            border: 1px solid rgba(255,255,255,0.12);
+            border-radius: 24px;
+            backdrop-filter: blur(14px);
+        }
+
+        .hero-card h3 {
+            margin: 0 0 0.8rem;
+            font-size: 1.4rem;
+            color: #f8fafc;
+        }
+
+        .hero-card p {
+            margin: 0;
+            color: var(--muted);
+            line-height: 1.8;
+        }
+
+        .section-title {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .section-title h2 {
+            margin: 0;
+            font-size: clamp(2rem, 3vw, 3rem);
+        }
+
+        .section-title p {
+            margin: 0;
+            color: var(--muted);
+            max-width: 520px;
+        }
+
+        .project-grid {
+            display: grid;
+            gap: 1.5rem;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+        }
+
+        .project-card {
+            overflow: hidden;
+            border-radius: 28px;
+            position: relative;
+            background: rgba(255,255,255,0.04);
+            border: 1px solid rgba(255,255,255,0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .project-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 22px 55px rgba(0,0,0,0.24);
+        }
+
+        .project-card img {
+            width: 100%;
+            height: 240px;
+            object-fit: cover;
+            display: block;
+        }
+
+        .project-card .card-body {
+            padding: 1.5rem;
+        }
+
+        .project-card .tag {
+            display: inline-flex;
+            padding: 0.4rem 0.9rem;
+            border-radius: 999px;
+            color: var(--accent);
+            background: rgba(56, 189, 248, 0.1);
+            font-size: 0.8rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        .project-card h3 {
+            margin: 0 0 0.85rem;
+            font-size: 1.25rem;
+        }
+
+        .project-card p {
+            margin: 0 0 1.5rem;
+            color: var(--muted);
+            line-height: 1.8;
+        }
+
+        .project-card a {
+            color: var(--accent);
+            font-weight: 700;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .project-card a:hover {
+            color: #7dd3fc;
+        }
+
+        .hero-bottom {
+            margin-top: 4rem;
+            display: grid;
+            gap: 1rem;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+        }
+
+        .hero-bottom .feature {
+            background: rgba(255,255,255,0.06);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 24px;
+            padding: 1.5rem;
+        }
+
+        .hero-bottom .feature h4 {
+            margin: 0 0 0.8rem;
+            font-size: 1.05rem;
+        }
+
+        .hero-bottom .feature p {
+            margin: 0;
+            color: var(--muted);
+            line-height: 1.8;
+            font-size: 0.95rem;
+        }
+
+        footer {
+            padding: 3rem 0 3.5rem;
+            text-align: center;
+            color: var(--muted);
+        }
+
+        @media (min-width: 992px) {
+            .hero {
+                grid-template-columns: 1fr 1fr;
+                align-items: center;
+                gap: 4rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header class="flex flex-wrap items-center justify-between py-8 gap-4">
+            <div class="text-xl font-bold tracking-tight">YI XIN<span class="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-violet-500">.PM</span></div>
+            <nav class="hidden md:flex items-center gap-8 text-sm text-slate-300 uppercase tracking-[0.18em]">
+                <a href="#home" class="hover:text-white">首頁</a>
+                <a href="#projects" class="hover:text-white">作品集</a>
+                <a href="#about" class="hover:text-white">關於我</a>
+            </nav>
+        </header>
+
+        <section id="home" class="hero">
+            <div class="hero-content">
+                <div class="hero-badge">
+                    <i data-lucide="sparkles" class="w-4 h-4"></i>
+                    提升品牌質感與產品視覺呈現
+                </div>
+                <h1 class="hero-title">讓首頁<br><span class="highlight">更優雅</span>、更吸睛、且充滿質感</h1>
+                <p class="hero-copy">以圖片為核心，打造視覺吸引力與產品故事感。首頁不只是資訊陳列，而是第一眼的品牌記憶。</p>
+                <div class="hero-actions">
+                    <a href="#projects" class="btn-primary">探索作品</a>
+                    <a href="PM_CV2.pdf" target="_blank" class="btn-secondary">下載履歷</a>
+                </div>
+
+                <div class="hero-bottom">
+                    <div class="feature">
+                        <h4>大圖視覺</h4>
+                        <p>直接讓觀眾進入作品氛圍，提升首頁質感與情緒共鳴。</p>
+                    </div>
+                    <div class="feature">
+                        <h4>優雅排版</h4>
+                        <p>保留簡約風格，同時讓圖片與文字的比例更舒適。</p>
+                    </div>
+                    <div class="feature">
+                        <h4>行動連結</h4>
+                        <p>首頁即能直接引導到專案內容，提升作品入口效率。</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="hero-image glass-card">
+                <img src="img/NEW.jpeg" alt="作品集首頁美圖" loading="lazy">
+                <div class="hero-card">
+                    <h3>最新作品展示</h3>
+                    <p>使用品牌級質感圖像 + 模組化視覺區塊，強化首屏吸引力與轉換預期。</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="projects" class="py-20">
+            <div class="section-title">
+                <div>
+                    <h2>Featured Works</h2>
+                </div>
+                <p>挑選三個最具質感的作品，搭配漂亮圖片說明，讓首頁更具視覺故事。</p>
+            </div>
+            <div class="project-grid">
+                <article class="project-card">
+                    <img src="img/3.png" alt="JetFi App UI" loading="lazy">
+                    <div class="card-body">
+                        <span class="tag">App 重構</span>
+                        <h3>JetFi 首頁重構</h3>
+                        <p>以使用者視角設計首頁，讓核心轉換區更突出，提升導航與視覺清晰度。</p>
+                        <a href="APP.html">查看案例 <i data-lucide="arrow-right" class="w-4 h-4"></i></a>
+                    </div>
+                </article>
+                <article class="project-card">
+                    <img src="img/kol流程表.png" alt="KOL 行銷策略" loading="lazy">
+                    <div class="card-body">
+                        <span class="tag">行銷策略</span>
+                        <h3>KOL 行銷設計</h3>
+                        <p>用漂亮圖片搭配流程視覺，呈現專案的策略架構和執行美感。</p>
+                        <a href="kol.html">查看案例 <i data-lucide="arrow-right" class="w-4 h-4"></i></a>
+                    </div>
+                </article>
+                <article class="project-card">
+                    <img src="img/Youtuber置入廣告效益分析_頁面_2.jpg" alt="YouTuber 廣告分析" loading="lazy">
+                    <div class="card-body">
+                        <span class="tag">數據分析</span>
+                        <h3>YouTuber 廣告效益</h3>
+                        <p>結合視覺報告與數據洞察，讓專案更具有專業呈現與質感。</p>
+                        <a href="META.html">查看案例 <i data-lucide="arrow-right" class="w-4 h-4"></i></a>
+                    </div>
+                </article>
+            </div>
+        </section>
+
+        <section id="about" class="py-20">
+            <div class="glass-card p-8">
+                <div class="grid gap-8 lg:grid-cols-2 items-center">
+                    <div>
+                        <h2 class="text-4xl font-bold mb-4">關於我</h2>
+                        <p class="text-slate-400 leading-8">我是一位產品經理，擅長把複雜的商業問題轉化為簡潔、漂亮的產品頁面。我的首頁設計重點是「第一眼就吸引、第二眼就理解」。</p>
+                    </div>
+                    <div class="overflow-hidden rounded-3xl">
+                        <img src="img/3.jpg" alt="About image" class="w-full h-full object-cover" loading="lazy">
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <footer>
+        <p>© 2026 YI XIN. Product Manager Portfolio</p>
+    </footer>
+
+    <script>lucide.createIcons();</script>
+</body>
+</html>
