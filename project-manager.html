@@ -45,6 +45,28 @@
             margin-bottom: 0.5rem;
             display: block;
         }
+        .project-item {
+            padding: 0.75rem;
+            border-radius: 0.5rem;
+            cursor: grab;
+            transition: all 0.2s ease;
+            border: 1px solid transparent;
+        }
+        .project-item:hover {
+            background: rgba(15, 23, 42, 0.5);
+            border-color: rgba(6, 182, 212, 0.3);
+        }
+        .project-item.active {
+            background: rgba(6, 182, 212, 0.2);
+            border-color: #06b6d4;
+        }
+        .project-item.dragging {
+            opacity: 0.5;
+            background: rgba(6, 182, 212, 0.3);
+        }
+        .project-item.drag-over {
+            border-top: 2px solid #06b6d4;
+        }
     </style>
 </head>
 <body>
@@ -68,11 +90,12 @@
                 <!-- Projects List -->
                 <div class="lg:col-span-1">
                     <div class="glass-card p-6 rounded-2xl sticky top-8">
-                        <h2 class="text-xl font-bold mb-6">您的專案</h2>
-                        <div id="projectsList" class="space-y-3 max-h-[70vh] overflow-y-auto">
+                        <h2 class="text-xl font-bold mb-6">專案列表</h2>
+                        <p class="text-xs text-slate-500 mb-4">拖拽調整順序</p>
+                        <div id="projectsList" class="space-y-2 max-h-[70vh] overflow-y-auto">
                             <!-- Projects dynamically loaded -->
                         </div>
-                        <div class="mt-4 text-xs text-slate-500">使用上下移動按鈕重新排序專案卡片，保存後會同步更新 PM4 首頁。</div>
+                        <div class="mt-4 text-xs text-slate-500">拖拽排序後自動保存，同步更新 PM4 首頁。</div>
                         <button onclick="addNewProject()" class="w-full mt-6 bg-cyan-500 hover:bg-cyan-600 text-slate-950 px-4 py-3 rounded-xl font-bold transition flex items-center justify-center gap-2">
                             <i data-lucide="plus" class="w-4 h-4"></i> 新增專案
                         </button>
@@ -198,19 +221,78 @@
         function renderProjectsList() {
             const list = document.getElementById('projectsList');
             list.innerHTML = projects.map((p, idx) => `
-                <div class="w-full rounded-lg transition ${currentProjectId === p.id ? 'bg-cyan-500/20 border border-cyan-500' : 'hover:bg-slate-800 border border-transparent'}">
-                    <button onclick="editProject('${p.id}')" class="w-full text-left p-3 flex justify-between items-center gap-3">
-                        <div>
-                            <div class="font-bold text-sm">${p.title}</div>
+                <div class="project-item ${currentProjectId === p.id ? 'active' : ''}" 
+                     draggable="true" 
+                     data-id="${p.id}"
+                     onclick="editProject('${p.id}')"
+                     ondragstart="handleDragStart(event)"
+                     ondragend="handleDragEnd(event)"
+                     ondragover="handleDragOver(event)"
+                     ondrop="handleDrop(event)"
+                     ondragleave="handleDragLeave(event)">
+                    <div class="flex items-start gap-3">
+                        <div class="mt-1 text-slate-600 flex-shrink-0">⋮⋮</div>
+                        <div class="flex-1 min-w-0">
+                            <div class="font-bold text-sm truncate">${p.title}</div>
                             <div class="text-xs text-slate-500 mt-1">${p.categoryLabel}</div>
                         </div>
-                        <div class="flex gap-1">
-                            <button type="button" onclick="event.stopPropagation(); moveProject('${p.id}', -1);" class="px-2 py-1 rounded-lg bg-slate-800 text-slate-300 hover:bg-slate-700">↑</button>
-                            <button type="button" onclick="event.stopPropagation(); moveProject('${p.id}', 1);" class="px-2 py-1 rounded-lg bg-slate-800 text-slate-300 hover:bg-slate-700">↓</button>
-                        </div>
-                    </button>
+                    </div>
                 </div>
             `).join('');
+        }
+
+        let draggedElement = null;
+
+        function handleDragStart(e) {
+            draggedElement = e.target.closest('.project-item');
+            draggedElement.classList.add('dragging');
+            e.dataTransfer.effectAllowed = 'move';
+        }
+
+        function handleDragEnd(e) {
+            const items = document.querySelectorAll('.project-item');
+            items.forEach(item => {
+                item.classList.remove('dragging', 'drag-over');
+            });
+            draggedElement = null;
+        }
+
+        function handleDragOver(e) {
+            e.preventDefault();
+            e.dataTransfer.dropEffect = 'move';
+            const item = e.target.closest('.project-item');
+            if (item && item !== draggedElement) {
+                item.classList.add('drag-over');
+            }
+        }
+
+        function handleDragLeave(e) {
+            const item = e.target.closest('.project-item');
+            if (item) {
+                item.classList.remove('drag-over');
+            }
+        }
+
+        function handleDrop(e) {
+            e.preventDefault();
+            const dropTarget = e.target.closest('.project-item');
+            
+            if (!dropTarget || !draggedElement || draggedElement === dropTarget) return;
+
+            const draggedId = draggedElement.dataset.id;
+            const targetId = dropTarget.dataset.id;
+
+            const draggedIdx = projects.findIndex(p => p.id === draggedId);
+            const targetIdx = projects.findIndex(p => p.id === targetId);
+
+            if (draggedIdx === -1 || targetIdx === -1) return;
+
+            const draggedProject = projects[draggedIdx];
+            projects.splice(draggedIdx, 1);
+            projects.splice(targetIdx, 0, draggedProject);
+
+            saveProjects();
+            renderProjectsList();
         }
 
         // 編輯專案
