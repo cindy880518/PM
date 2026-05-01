@@ -159,7 +159,7 @@
     <!-- 導覽列 -->
     <nav class="fixed w-full z-[60] py-6 px-6" id="navbar">
         <div class="max-w-7xl mx-auto flex justify-between items-center glass-card px-8 py-3 rounded-2xl border-none">
-            <div class="text-xl font-extrabold tracking-tight gradient-text cursor-pointer" onclick="showPage('home')">Cindy.PM</div>
+            <div class="text-xl font-extrabold tracking-tight gradient-text cursor-pointer" onclick="showPage('home')">Cindy</div>
             <div class="hidden md:flex space-x-10 text-sm font-medium uppercase tracking-widest text-slate-400">
                 <button onclick="showPage('home')" class="hover:text-cyan-400 transition nav-link" data-page="home">首頁</button>
                 <button onclick="showPage('about')" class="hover:text-cyan-400 transition nav-link" data-page="about">關於我</button>
@@ -274,13 +274,34 @@
                         </div>
                         <div class="flex flex-wrap gap-3">
                             <button class="filter-btn active px-6 py-2 rounded-xl border border-slate-700 text-sm font-bold" onclick="filterProjects('all')">全部</button>
+                            <button class="filter-btn px-6 py-2 rounded-xl border border-slate-700 text-sm font-bold" onclick="filterProjects('saas')">SaaS/系統</button>
                             <button class="filter-btn px-6 py-2 rounded-xl border border-slate-700 text-sm font-bold" onclick="filterProjects('marketing')">數位廣告</button>
                             <button class="filter-btn px-6 py-2 rounded-xl border border-slate-700 text-sm font-bold" onclick="filterProjects('kol')">KOL</button>
-                            <button class="filter-btn px-6 py-2 rounded-xl border border-slate-700 text-sm font-bold" onclick="filterProjects('saas')">SaaS/系統</button>
+                            
                         </div>
                     </div>
+                    
 
-                    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-10">
+                    <div id="projectsGrid" class="grid md:grid-cols-2 lg:grid-cols-3 gap-10">
+                        <div class="project-item saas" style="display:none;">
+                            <div class="glass-card rounded-[2.5rem] overflow-hidden group cursor-pointer">
+                                <div class="relative h-64 bg-slate-900 flex items-center justify-center">
+                                    <a href="APP.html"></a>
+                                    <img width="100%" src="https://duk.tw/HzMCYM.jpg" alt="廣告分析圖表" class="project-img">
+                                    <i data-lucide="layers" class="w-16 h-16 text-slate-700/30"></i>
+                                </div>
+                                <div class="p-8">
+                                    <a href="APP.html">
+                                    <span class="text-[10px] font-black tracking-widest text-slate-500 uppercase">Enterprise SaaS</span>
+                                    <h4 class="text-2xl font-bold mt-2 mb-3">JetFi eSIM App 首頁重構策略</h4>
+                                    <p class="text-slate-400 text-sm mb-6 line-clamp-2">優化APP首頁，解決跨部門數據孤島問題。</p>
+                                    <div class="flex items-center gap-2 text-slate-400 text-sm font-bold">
+                                        詳情 <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                                    </div>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
                         <div class="project-item marketing">
                             <!-- onclick="openModal('meta-ads')" -->
                             <div class="glass-card rounded-[2.5rem] overflow-hidden group cursor-pointer" >
@@ -301,6 +322,8 @@
                                 </div>
                             </div>
                         </div>
+
+                        
                         <div class="project-item marketing">
                             <!-- onclick="openModal('meta-ads')" -->
                             <div class="glass-card rounded-[2.5rem] overflow-hidden group cursor-pointer" >
@@ -322,32 +345,12 @@
                             </div>
                         </div>
                         
-                    
-                        <div class="project-item saas">
-                            <div class="glass-card rounded-[2.5rem] overflow-hidden group cursor-pointer">
-                                <div class="relative h-64 bg-slate-900 flex items-center justify-center">
-                                    <a href="APP.html"></a>
-                                    <img width="100%" src="https://duk.tw/HzMCYM.jpg" alt="廣告分析圖表" class="project-img">
-                                    <i data-lucide="layers" class="w-16 h-16 text-slate-700/30"></i>
-                                </div>
-                                <div class="p-8">
-                                    <a href="APP.html">
-                                    <span class="text-[10px] font-black tracking-widest text-slate-500 uppercase">Enterprise SaaS</span>
-                                    <h4 class="text-2xl font-bold mt-2 mb-3">JetFi eSIM App 首頁重構策略</h4>
-                                    <p class="text-slate-400 text-sm mb-6 line-clamp-2">優化APP首頁，解決跨部門數據孤島問題。</p>
-                                    <div class="flex items-center gap-2 text-slate-400 text-sm font-bold">
-                                        詳情 <i data-lucide="arrow-right" class="w-4 h-4"></i>
-                                    </div>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
+                
                         <div class="project-item kol">
                             <div class="glass-card rounded-[2.5rem] overflow-hidden group cursor-pointer">
-                                <div class="relative h-64 bg-slate-900 flex items-center justify-center">
-                                    <a href="kol.html">
-                                    <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=80&w=800" alt="廣告分析圖表" class="project-img"></a>
-                                    <i data-lucide="layers" class="w-16 h-16 text-slate-700/30"></i>
+                                <div class="relative bg-slate-900 flex items-center justify-center aspect-[382/272]">
+                                    <a href="kol.html" class="w-full h-full">
+                                    <img src="https://duk.tw/Ykn6EF.jpg" alt="廣告分析圖表" class="project-img w-full h-full object-cover"></a>
                                 </div>
                                 <div class="p-8">
                                     <a href="kol.html">
@@ -553,6 +556,48 @@
     <script>
         AOS.init({ duration: 800, once: true });
         lucide.createIcons();
+
+        // 從 localStorage 載入專案或使用預設
+        function loadProjects() {
+            const saved = localStorage.getItem('pm4Projects');
+            return saved ? JSON.parse(saved) : null;
+        }
+
+        // 動態渲染卡片
+        function renderProjects() {
+            const projects = loadProjects();
+            if (!projects) return; // 使用預設卡片
+
+            const grid = document.getElementById('projectsGrid');
+            const defaultCards = grid.innerHTML; // 保留預設卡片HTML
+
+            // 清空並重新填充
+            grid.innerHTML = projects.map(p => `
+                <div class="project-item ${p.category}">
+                    <div class="glass-card rounded-[2.5rem] overflow-hidden group cursor-pointer">
+                        <div class="relative bg-slate-900 flex items-center justify-center aspect-[382/272]">
+                            <a href="${p.link}" class="w-full h-full">
+                            <img src="${p.image}" alt="${p.title}" class="project-img w-full h-full object-cover"></a>
+                        </div>
+                        <div class="p-8">
+                            <a href="${p.link}">
+                            <span class="text-[10px] font-black tracking-widest text-cyan-500 uppercase">${p.categoryLabel}</span>
+                            <h4 class="text-2xl font-bold mt-2 mb-3">${p.title}</h4>
+                            <p class="text-slate-400 text-sm mb-6 line-clamp-2">${p.description}</p>
+                            <div class="flex items-center gap-2 text-cyan-400 text-sm font-bold">
+                                詳情 <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                            </div>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            `).join('') + defaultCards;
+
+            lucide.createIcons();
+        }
+
+        // 頁面載入時渲染
+        document.addEventListener('DOMContentLoaded', renderProjects);
 
         
         function toggleMobileMenu() {
