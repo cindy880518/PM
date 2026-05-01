@@ -42,6 +42,7 @@
             border: 8px solid #1e293b;
             background-color: #fff;
         }
+        
         /* 圖片懸停放大特效 */
         .zoom-img {
             cursor: zoom-in;
@@ -86,6 +87,39 @@
             border-color: rgba(239, 68, 68, 0.5);
             transform: scale(1.1) rotate(180deg);
         }
+        /* Artwork wrapper: place GIF underneath and PNG on top */
+        .art-wrap {
+            position: relative;
+            display: inline-block;
+            overflow: hidden;
+        }
+        .art-wrap .gif-under {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) scale(1.05);
+            width: auto;
+            height: auto;
+            max-width: 92%;
+            max-height: 92%;
+            object-fit: contain;
+            z-index: 5;
+            pointer-events: none;
+        }
+        .art-wrap .png-top {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: 10;
+            pointer-events: none;
+        }
+        @media (min-width: 1024px) {
+            .art-wrap { border-radius: 1.5rem; }
+            .art-wrap .gif-under,
+            .art-wrap .png-top { border-radius: 1.5rem; }
+        }
     </style>
 </head>
 <body class="bg-slate-50 text-slate-800 font-sans antialiased selection:bg-brand-500 selection:text-white">
@@ -102,22 +136,31 @@
         </div>
         
         <div class="container mx-auto px-6 relative z-10">
-            <div class="max-w-3xl">
-                <div class="inline-flex items-center space-x-2 bg-white/10 rounded-full px-4 py-2 mb-6 backdrop-blur-sm border border-white/20">
-                    <i data-lucide="smartphone" class="w-4 h-4 text-brand-100"></i>
-                    <span class="text-sm font-medium tracking-wider text-brand-100">JetFi Mobile App</span>
+            <div class="flex flex-col lg:flex-row items-center gap-8">
+                <div class="lg:w-1/2 max-w-3xl">
+                    <div class="inline-flex items-center space-x-2 bg-white/10 rounded-full px-4 py-2 mb-6 backdrop-blur-sm border border-white/20">
+                        <i data-lucide="smartphone" class="w-4 h-4 text-brand-100"></i>
+                        <span class="text-sm font-medium tracking-wider text-brand-100">JetFi Mobile App</span>
+                    </div>
+                    <h1 class="text-5xl md:text-7xl font-black leading-tight mb-6">
+                        首頁重構策略<br>
+                        <span class="text-transparent bg-clip-text bg-gradient-to-r from-brand-400 to-indigo-400">釋放數位螢幕坪效</span>
+                    </h1>
+                    <p class="text-xl md:text-2xl text-slate-300 mb-10 leading-relaxed font-light">
+                        產品經理視角下的介面空間重分配與決策推演，成功將核心購買區可見度提升 2.5 倍，驅動行銷與轉換變現。
+                    </p>
+                    <div class="flex space-x-4">
+                        <a href="#overview" class="bg-brand-500 hover:bg-brand-600 text-white px-8 py-4 rounded-xl font-bold transition-all shadow-lg hover:shadow-brand-500/30 flex items-center">
+                            觀看案例 <i data-lucide="arrow-down" class="ml-2 w-5 h-5"></i>
+                        </a>
+                    </div>
                 </div>
-                <h1 class="text-5xl md:text-7xl font-black leading-tight mb-6">
-                    首頁重構策略<br>
-                    <span class="text-transparent bg-clip-text bg-gradient-to-r from-brand-400 to-indigo-400">釋放數位螢幕坪效</span>
-                </h1>
-                <p class="text-xl md:text-2xl text-slate-300 mb-10 leading-relaxed font-light">
-                    產品經理視角下的介面空間重分配與決策推演，成功將核心購買區可見度提升 2.5 倍，驅動行銷與轉換變現。
-                </p>
-                <div class="flex space-x-4">
-                    <a href="#overview" class="bg-brand-500 hover:bg-brand-600 text-white px-8 py-4 rounded-xl font-bold transition-all shadow-lg hover:shadow-brand-500/30 flex items-center">
-                        觀看案例 <i data-lucide="arrow-down" class="ml-2 w-5 h-5"></i>
-                    </a>
+
+                <div class="lg:w-1/2 flex justify-center">
+                    <div class="relative w-[140px] h-[290px] lg:w-[290px] lg:h-[600px] art-wrap">
+                        <img src="https://jetfi-s3.s3.ap-northeast-1.amazonaws.com/web/APP/method1.gif" alt="device-gif" class="gif-under">
+                        <img src="https://jetfi-s3.s3.ap-northeast-1.amazonaws.com/web/APP/iPhone13Pro_BG.png" alt="device-bg" class="png-top">
+                    </div>
                 </div>
             </div>
         </div>
@@ -202,12 +245,13 @@
 
                 <!-- Original UI Screenshot -->
                 <div class="lg:w-1/2 flex justify-center reveal" style="transition-delay: 200ms;">
-                    <div class="relative w-[300px] h-[600px] rounded-[2.5rem] mobile-frame overflow-hidden flex flex-col group">
+                    <img src="https://duk.tw/flYJil.jpg" alt="原版首頁熱點圖" class="w-full h-full object-cover zoom-img" onclick="openLightbox(this.src)">
+                    <!-- <div class="relative w-[300px] h-[600px] rounded-[2.5rem] mobile-frame overflow-hidden flex flex-col group">
                         <img src="img/原首頁.jpg" alt="原版首頁熱點圖" class="w-full h-full object-cover zoom-img" onclick="openLightbox(this.src)">
                         <div class="absolute bottom-4 left-0 right-0 text-center pointer-events-none">
                             <span class="bg-black/70 text-white text-xs px-3 py-1.5 rounded-full backdrop-blur-md">原版介面熱點圖 (Before)</span>
                         </div>
-                    </div>
+                    </div> -->
                 </div>
 
             </div>
